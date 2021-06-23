@@ -48,3 +48,24 @@ const imagens = [
     }
   ];
 
+let index = 0;
+let botaoProximo = document.querySelector("#proximo");
+let botaoAnterior = document.querySelector("#anterior");
+let slide = document.querySelector("#slide");
+
+botaoProximo.addEventListener('click', function (){
+  index++;
+  alteraImagem();
+});
+
+botaoAnterior.addEventListener('click', function (){
+  index--;
+  if (index < 0) index=imagens.length-1;
+  alteraImagem();
+});
+
+function alteraImagem(){
+  let nova_imagem = imagens[index % imagens.length];
+  slide.setAttribute("src", servidorDasImagens + '/' + nova_imagem.arquivo);
+  slide.setAttribute("alt", nova_imagem.descricao);
+}
